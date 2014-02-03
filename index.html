@@ -605,9 +605,300 @@ abram["favorite tea"] = "oolong";
 </section>
 <!-- ######################## END MARKDOWN SLIDE ########################## -->
 
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Objects
+
+````
+undefined.property; // Throws a type error
+undefined && undefined.property // returns undefined
+var empty = {};
+empty.property === undefined;
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh"
+};
+keys(abram); // produces ["name","job","favorite tea"]
+//prototype!
+var abramChild = Object.create(abram)
+keys(abramChild); // produces []
+abramChild.name === "Abram Hindle"; // inherits keys from abram
+````
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Objects
+
+````
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh",
+   "sayName": function() {
+      alert(this.name);
+   }
+};
+abramChild = Object.create(abram);
+abramChild.name = "Child";
+function doit() {
+    abram.sayName();
+    abramChild.sayName();
+}
+
+````
+</script>
+</div>
+<script>
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh",
+   "sayName": function() {
+      alert(this.name);
+   }
+};
+abramChild = Object.create(abram);
+abramChild.name = "Child";
+function doit() {
+    abram.sayName();
+    abramChild.sayName();
+}
+</script>
+<input type="button" value="doit()" onclick="javascript:doit();"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Methods
+
+````
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh",
+   "sayName": function() {
+      alert(this.name);
+   }
+};
+abramChild = Object.create(abram);
+abramChild.name = "Child";
+function doit() {
+    abram.sayName();
+    abramChild.sayName();
+}
+
+````
+</script>
+</div>
+<script>
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh",
+   "sayName": function() {
+      alert(this.name);
+   }
+};
+abramChild = Object.create(abram);
+abramChild.name = "Child";
+function doit() {
+    abram.sayName();
+    abramChild.sayName();
+}
+</script>
+<input type="button" value="doit()" onclick="javascript:doit();"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
 
 
 
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Methods
+
+* There's a problem, if we use a function to construct our objects.
+* The context of this does not get shared appropriately in inner
+  functions since this will reference the function itself.
+
+````
+// we can use new on person now!
+var Person = function() { // function is an object
+   this.name = "Abram Hindle"; // this is the current function
+   this.job = "Throwing Down JS";
+   this["favorite tea"] = "puerh";
+   var self = this; // you could do this if you like perl
+   var that = this; // this is more idiomatic
+   this.sayName = function() {       
+       var thatNameAccessor = function () {
+           return that.name;
+       };
+       var thisNameAccessor = function () {
+           return this.name;
+       };
+       alert("this:" + thisNameAccessor() + 
+             " that:" + thatNameAccessor());
+   }
+};
+function doit2() {
+    var p = new Person();
+    p.sayName();
+}
+````
+</script>
+</div>
+<script>
+// we can use new on person now!
+var person = function() { // function is an object
+   this.name = "Abram Hindle"; // this is the current function
+   this.job = "Throwing Down JS";
+   this["favorite tea"] = "puerh";
+   var self = this; // you could do this if you like perl
+   var that = this; // this is more idiomatic
+   this.sayName = function() {       
+       var thatNameAccessor = function () {
+           return that.name;
+       };
+       var thisNameAccessor = function () {
+           return this.name;
+       };
+       alert("this:" + thisNameAccessor() + 
+             " that:" + thatNameAccessor());
+   }
+};
+function doit2() {
+    var p = new person();
+    p.sayName();
+}
+</script>
+<input type="button" value="doit2()" onclick="javascript:doit2();"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Methods
+
+* There's a problem, if we use a function to construct our objects.
+* The context of this does not get shared appropriately in inner
+  functions since this will reference the function itself.
+
+````
+// look a constructor!
+var Animal = function(name) { // function is an object
+   this.name = name; // this is the current function
+   this.odd = (Math.random() > 0.5);
+   var that = this;
+   this.likesNumber = function(x) {       
+       return (x%2 == 1)?this.odd:!this.odd;
+   }
+};
+function doit3() {
+   var animal = new Animal(prompt("Name your Animal"));   
+   var num = prompt("A number your animal might like!");     
+   alert( animal.likesNumber( num ) ? "Yes!"+animal.name+" loves it" : 
+                                      "No "+animal.name+" hates it!" );
+}
+````
+</script>
+</div>
+<script>
+// we can use new on person now!
+var Animal = function(name) { // function is an object
+   this.name = name; // this is the current function
+   this.odd = (Math.random() > 0.5);
+   var that = this;
+   this.likesNumber = function(x) {       
+       return (x%2 == 1)?this.odd:!this.odd;
+   }
+};
+function doit3() {
+   var animal = new Animal(prompt("Name your Animal"));   
+   var num = prompt("A number your animal might like!");     
+   alert( animal.likesNumber( num ) ? "Yes!"+animal.name+" loves it" : 
+                                      "No "+animal.name+" hates it!" );
+}
+</script>
+<input type="button" value="doit3()" onclick="javascript:doit3();"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Methods
+
+* Objects have a prototype object that they are prototyped from
+* When you change a prototype it will be available in all instances immediately
+
+````
+// look a constructor!
+var Counter = function(name) { // function is an object
+   this.name = name; // this is the current function
+   this.count = 0;
+   this.inc = function() { ++this.count; }
+};
+function counterTest() {
+   var counter1 = new Counter("sheep");
+   var counter2 = new Counter("people");
+   for (var i = 0 ; i < 10; i++) {
+       counter1.inc();
+       counter2.inc();
+   }
+   // Dynamically Add a method to all counters in the system
+   Counter.prototype.dec = function() { --this.count };
+   counter2.dec();
+   alert("Counter1:"+counter1.count+" Counter2:"+counter2.count);
+}
+````
+</script>
+</div>
+<script>
+// look a constructor!
+var Counter = function(name) { // function is an object
+   this.name = name; // this is the current function
+   this.count = 0;
+   this.inc = function() { ++this.count; }
+};
+function counterTest() {
+   var counter1 = new Counter("sheep");
+   var counter2 = new Counter("people");
+   for (var i = 0 ; i < 10; i++) {
+       counter1.inc();
+       counter2.inc();
+   }
+   // Add a method to all counters in the system
+   Counter.prototype.dec = function() { --this.count };
+   counter2.dec();
+   alert("Counter1:"+counter1.count+" Counter2:"+counter2.count);
+}
+</script>
+<input type="button" value="counterTest()" onclick="javascript:counterTest();"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
+<!-- should we really do inheritance? -->
+<!-- maybe cover some nice methods in the stdlib -->
+<!-- cover the web portion! -->
+<!-- cover ajax! -->
 
 <!-- END -->
 
