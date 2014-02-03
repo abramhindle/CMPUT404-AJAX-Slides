@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8"/>
+
+		<title>Introduction to Javscript</title>
+
+		<meta name="description" content="HTML5 Javascript Intro For
+                                                  CMPUT404"/>
+		<meta name="author" content="Abram Hindle"/>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+			  <section>
+			    <h1>Introduction to Javascript</h1>
+			    <p>
+			      <small>Created
+				by <a href="http://softwareprocess.es">Abram
+				  Hindle</a><br/>
+                                abram dot hindle at ualberta dot ca
+				<br/>
+                                Department of Computing Science<br/>
+                                University of Alberta<br/>
+                                Edmonton, Alberta, Canada<br/>
+                                Earth<br/>
+
+			    </p>
+                            <p>
+                              </small>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+			    </p>
+			  </section>
+                          
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+Good resources:
+
+* Javascript the good parts by Douglas Crockford (the guy who made JSON!)
+ * http://proquest.safaribooksonline.com/book/programming/javascript/9780596517748
+* W3Schools Javascript Tutorials
+ * http://www.w3schools.com/js/
+* JSFiddle - Web JS IDE
+ * http://jsfiddle.net/
+* [Video: Firefox Debugger](http://www.youtube.com/watch?v=sK8KU8oiF8s)
+* [New HTML5 APIs for
+ JS](https://rawgithub.com/whatwg/html-differences/master/Overview.html#apis)
+* [HTML and Scripting from the spec](http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#scripting)
+* [ECMA-262: Ecmcascript spec](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
+* [Javascript spec](http://javascript.spec.whatwg.org/)
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+Where did it come from?
+
+* Netscape -- Brendan Eich
+ * Called Mocha, LiveScript and eventually Javascript
+* Inspired by Java (Sun)
+* Inspired by C 
+* Inspired by Self
+
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+What kind of language is it?
+
+* Dynamic
+* Object Oriented
+* Imperative
+* Functional
+* Prototype Driven
+* Embeddable
+* [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
+
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+Why?
+
+It runs in browsers (with minimal compatibility issues).
+
+It runs on webservers.
+
+It runs in PDFs.
+
+It is embedded everywhere.
+
+[It is getting better and better performance.](http://www.unrealengine.com/html5/)
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript on Webpages
+
+* put the javascript within &lt;script&gt; tags.
+
+````
+<script type="text/javascript">
+//<![CDATA[
+// ^^^ do this for XHTML Compatibility if you are going to embed javascript
+var someJS = "Put your javascript here";
+//]]>
+</ｓcript>
+````
+
+````
+<script>
+var someJS = "This works but isn't XHTML compatible";
+</ｓcript>
+<!-- you can embed oneliners within HTML! -->
+<input value="test me!" type=button
+       onclick="javascript:alert('hey look ma!');"/>
+````
+
+</script>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+// ^^^ do this for XHTML Compatibility if you are going to embed javascript
+var someJS = "Put your javascript here";
+//]]>
+</script>
+<script>
+var someJS = "This works but isn't XHTML compatible";
+</script>
+<!-- you can embed oneliners within HTML! -->
+<input value="test me!" type=button
+       onclick="javascript:alert('hey look ma!');"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Scope
+
+* Scope: Lexicalish. 
+ * Javascript has a scope that feels lexical but really entire
+   functions are a single block scope.
+ * If statements and for loops do not create new scope
+ * Variables are global by default unless they are pre-declared with var
+
+````
+// here's a comment 
+/* here's a variable assignment */
+var variable = "A string value";
+function init() {
+    f = "Globally available don't do this!";
+}
+function testF() { 
+    return f; 
+}
+function testVariable() {
+    var variable = "A local value!";
+    return variable;
+}
+init();
+````
+</script>
+</div>
+<script>
+var variable = "A string value, still globally available";
+function init() {
+    f = "Globally available don't do this!";
+}
+function testF() { 
+    return f; 
+}
+function testVariable() {
+    var variable = "A local value!";
+    return variable;
+}
+init();
+</script>
+<input value="testF!" type=button onclick="javascript:alert(testF());"/>
+<input value="testVariable!" type=button onclick="javascript:alert(testVariable());"/>
+<input value="alert(variable)!" type=button onclick="javascript:alert(variable);"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Scope
+
+* Scope: Closures.
+
+````
+// Good style dictates all variables should be defined with var
+// this avoid confusion
+var variable = "A string value";
+// var causes variables to be defined in their initially scope
+// and are made available to all functions defined within their scope.
+function lexical() {
+    var shared = "share!"; // defined in this scope
+    return function() { // shared is also defined (and shared) in this function
+        return shared;  // note how this function references shared
+    };                  // did you also see we just returned an 
+}                       // anonymous function!
+alert( // so now we call lexical() get a function and then
+    ( lexical() )()  // call that function using ()
+);
+````
+</script>
+</div>
+<script>
+// Good style dictates all variables should be defined with var
+// this avoid confusion
+var variable = "A string value";
+// var causes variables to be defined in their initially scope
+// and are made available to all functions defined within their scope.
+function lexical() {
+    var shared = "share!"; // defined in this scope
+    return function() { // shared is also defined (and shared) in this function
+        return shared;  // note how this function references shared
+    };                  // did you also see we just returned an 
+}                       // anonymous function!
+</script>
+<input type="button" value="alert( ( lexical() )() );" onclick="javascript:alert((lexical())());"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Scope
+
+* Scope: Closures.
+
+````
+// Closures are functions who reference another scope
+// First we make a named function called makeCounter
+function makeCounter() {
+    var counter = 0;
+    // note that functions are values!
+    var count = function() {
+        return counter++; //post increment counter
+    }
+    return count;
+}
+var myCounter = makeCounter();
+myCounter();
+myCounter();
+myCounter();
+// myCounter returned 2
+````
+</script>
+</div>
+<script>
+// Closures are functions who reference another scope
+// First we make a named function called makeCounter
+function makeCounter() {
+    var counter = 0;
+    // note that functions are values!
+    var count = function() {
+        return counter++; //post increment counter
+    }
+    return count;
+}
+var myCounter = makeCounter();
+myCounter();
+myCounter();
+myCounter();
+// myCounter returned 2
+</script>
+<input type="button" value="Example" onclick="javascript:alert(myCounter());"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+* Functions and closures
+ * functions can be named and take parameters
+ * function can be anonymous and take parameters as well
+ * function( makes an anonymous function
+
+````
+function cpsAdd(val1, val2, continuation) {
+    continuation(val1 + val2);
+}
+function add1234(continuation) {
+    cpsAdd(1,2, function(x) { 
+        cpsAdd(x,3, function(x) {
+            // x is shadowed
+            cpsAdd(x,4, continuation);
+        });
+    });
+}
+add1234(alert);
+````
+</script>
+</div>
+<script>
+function cpsAdd(val1, val2, continuation) {
+    continuation(val1 + val2);
+}
+function add1234(continuation) {
+    cpsAdd(1,2, function(x) { 
+        cpsAdd(x,3, function(x) {
+            // x is shadowed
+            cpsAdd(x,4, continuation);
+        });
+    });
+}
+//add1234(alert);
+</script>
+<input type="button" value="add1234(alert);" onclick="javascript:add1234(alert);"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript
+
+* Functions and closures
+ * returning functions can be quite useful
+   * or confusing 
+````
+  function cpsAddR(val1, val2) {
+      return function(continuation) {
+         continuation(val1 + val2);
+      };
+  }
+  function addR(continuation) {
+      // if you don't have a return the last value
+      // is implicitly returned!
+      cpsAddR(4,5)( function(x) { 
+          cpsAddR(x,6)( function(y) {
+              // both x and y are available here
+              cpsAddR(x,y)( continuation );
+          })
+      });
+  }
+  addR(alert);
+````
+</script>
+</div>
+<script>
+function cpsAddR(val1, val2) {
+    return function(continuation) {
+       continuation(val1 + val2);
+    };
+}
+function addR(continuation) {
+    cpsAddR(4,5)( function(x) { 
+        cpsAddR(x,6)( function(y) {
+            cpsAddR(x,y)( continuation );
+        })
+    });
+}
+//add1234R(alert);
+
+</script>
+<input type="button" value="addR(alert);" onclick="javascript:addR(alert);"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Names
+
+* Names
+ * starts with a letter followed by underscores, letters or numbers.
+ * can't be a [reserved
+word](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Reserved_Words)
+like break or case or for or function or if or in etc.
+
+````
+var aString = "Strings";
+var break = "not allowed!";
+var BREAK = "This is allowed!";
+var BrEAK = "Try not to abuse case sensitivity";
+````
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Numbers
+
+* Numbers
+ * Everything is a double :(
+ * Expressed as an integer, a decimal or exponent
+
+````
+var aNumber = 10;
+var aNumber = 11.11;
+var aNumber = 1e-100;
+var aNumber = 1E+100;
+var nan = NaN;
+var inf = Infinity;
+var negativeInfinity = -Infinity;
+
+````
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Strings
+
+* Strings
+ * Unicode by default
+ * Define strings with '' or ""
+ * Any characters except control characters and \ and '' or ""
+   depending if you use '' or ""
+
+````
+var aString = "";
+var anotherString ="Hi how are you";
+var escapesString = "\r\n\t\f\b\/\\\\'\"";
+var snowMan = "\u2603";
+snowMan.length === 1;
+aString.length === 0;
+````
+
+
+</script>
+</div>
+<input type="button" onclick="javascript:alert('\u2603');"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Booleans
+
+* Booleans
+ * true
+ * false
+ * Unfortunately if statements have lot of truthy and falsey values
+ * False values:
+
+````
+false
+null
+undefined
+''
+0
+NaN
+````
+
+ * True values are true and everything else.
+
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Arrays
+
+* Arrays
+ * Objected Oriented and full of methods
+ * 0 indexed;
+ * Indexable
+````
+var empty = [];
+var arrayInitialized = [1,2,3,4,'5'];//mixed!
+var arr = new Array(10);
+arr[0] === undefined;
+arr[0] = 'Assigned';
+'Assigned' === arr[0];
+arrayInitialized[4] === '5';
+arrayInitialized.length === 5;
+arrayInitialized.splice(3,1); // delete 4 from the array (slow)
+````
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Objects
+
+* Objects
+ * Everything is an object except booleans, and numbers and strings
+ * numbers and strings smell like objects but are fake.
+ * Objects have properties
+ * properties are named by a string
+ * property values are anything except undefined
+ * Objects don't have a class
+ * Pass by reference
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## Javascript Objects
+
+````
+var empty = {};
+var abram = {
+   "name":"Abram Hindle",
+   "job":"Throwing Down JS",
+   "favorite tea":"puerh"
+};
+var dog = {
+   paws: 4 // note I didn't quote paws
+};
+dog.paws === 4;
+abram["favorite tea"] === "puerh";
+abram.name === "Abram Hindle";
+abram["favorite tea"] = "oolong";
+````
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
+
+
+<!-- END -->
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## LICENSE
+
+Copyright 2014 (C) Abram Hindle
+
+The textual components of this slide deck are placed under the
+Creative Commons Attribute-ShareAlike 4.0 International License (CC
+BY-SA 4.0)
+
+</script>
+</div>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.en_US">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## LICENSE
+
+The source code to this slide deck is:
+
+````
+Copyright (C) 2013 Hakim El Hattab, http://hakim.se
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+````
+
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'sky',//Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'linear' || Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
