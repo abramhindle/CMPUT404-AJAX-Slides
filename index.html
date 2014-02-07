@@ -894,6 +894,218 @@ function counterTest() {
 <!-- ######################## END MARKDOWN SLIDE ########################## -->
 
 
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM
+
+* [JS HTML DOM Tutorial](http://www.w3schools.com/js/js_htmldom.asp)
+* 
+
+</script>
+</div>
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Element
+
+
+````
+<h1>A header title</h1>
+<div>
+Hi!
+<a href="http://google.ca">Click me!</a>
+</div>
+````
+
+</script>
+</div>
+</script>
+<blockquote>
+<h1>A header title</h1>
+<div>
+Hi!
+<a href="http://google.ca">Click me!</a>
+</div>
+</blockquote>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Element
+
+* Document (it's a tree with children nodes!)
+  * Root Element: HTML ( document.children[0] )
+    * Element: Head ( document.children[0].children[0] )
+    * Element: Body ( document.children[0].children[1] )
+      * Element: h1 ( document.children[0].children[1].children[0] )
+        * Text: A header title
+      * Element: div
+        * Text: Hi!
+        * Element: a ; attribute href
+          * Text: Click me!
+
+</script>
+</div>
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Elements
+
+* Document 
+````
+document
+````
+
+* Get children
+````
+document.children // a list (only Elements)
+document.childNodes // a list of Nodes (includes text)
+// oh look you can dynamically make elements!
+var elm = document.createElement("div");
+// textContent returns text of childNodes!
+elm.textContent = "Here's some text in that div";
+elm.childNodes.length === 1; // TextNode is a node child
+elm.children.length === 0; // no Element children
+// Append it to the body
+document.children[0].children[1].appendChild(elm);
+````
+
+</script>
+</div>
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Elements
+
+* Get Specific Children
+
+````
+// Get all DIVs
+var divs = document.getElementsByTagName("div"); 
+// gets all elements with class divider
+var dividers = document.getElementsByClassName("divider"); 
+// get the element with the ID main
+var main = document.getElementById('main');
+// get the element by name
+var ups = document.getElementsByName('up');
+
+````
+
+</script>
+</div>
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Elements
+
+* Create Children
+
+````
+function addToExample() {
+  // gets all elements with class divider
+  var example = document.getElementsByClassName("example")[0]; 
+  var elm = document.createElement("div");
+  elm.textContent = "Add me!";
+  example.appendChild(elm);
+}
+````
+
+````
+<div class="example">
+Hi! I'm Example!
+</div>
+````
+
+
+</script>
+</div>
+</script>
+<input type="button" onclick="addToExample()" value="addToExample"/>
+<div class="example">
+Hi! I'm Example!
+</div>
+<script>
+function addToExample() {
+  var example = document.getElementsByClassName("example")[0]; 
+  var elm = document.createElement("div");
+  elm.textContent = "Add me!";
+  example.appendChild(elm);
+}
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Elements
+
+* Manipulate Styles
+
+````
+function modifyStyle() {
+  // gets all elements with class divider
+  var examples = document.getElementsByClassName("example2"); 
+  examples.map( function(example) {
+     example.style.borderWidth = int(10*Math.random())+"px";
+  });
+}
+````
+
+````
+<div class="example2">Hi! I'm Example2!</div>
+<div class="example2">So am I!</div>
+````
+</script>
+</div>
+
+
+<script>
+function modifyStyle() {
+  // gets all elements with class divider
+  var examples = document.getElementsByClassName("example2"); 
+  for (var i = 0 ; i < examples.length; i++) {
+     var example = examples[i];
+     example.style.border = "black solid "+Math.floor(10*Math.random())+"px";
+  }
+}
+</script>
+
+<input type="button" onclick="modifyStyle()" value="modifyStyle"/>
+<div class="example2">Hi! I'm Example2!</div>
+<div class="example2">So am I!</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
 
 <!-- should we really do inheritance? -->
 <!-- maybe cover some nice methods in the stdlib -->
