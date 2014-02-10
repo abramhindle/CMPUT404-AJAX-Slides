@@ -1593,7 +1593,7 @@ function startGettingJQuery() {
         var url = s + ".json";
         $.get( url, function( data ) { 
             // JSON Parsing
-            $("#ajaxy2").text( data.message ); 
+            $("#ajaxy2").text( data.message || data ); 
         });
     },1000); // 1 second or 1000 ms
 }
