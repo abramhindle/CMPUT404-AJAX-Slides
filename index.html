@@ -1106,6 +1106,450 @@ function modifyStyle() {
 
 
 
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Elements
+
+* Explore with Firefox and Chromium
+  * Start Developer Tools and Go to the Console
+  * Experiment with a webpage like http://metafilter.com/
+  * Change dom elements
+  * Console lets you try out javascript and see the results
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## HTML DOM Resources
+
+* [W3CSchools Javascript DOM](http://www.w3schools.com/js/js_htmldom.asp)
+* [W3CSchools Javascript HTML DOM
+Examples](http://www.w3schools.com/js/js_dom_examples.asp)
+* [DOM Intro and Reference from
+MDN](https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference/Introduction)
+* [Mozilla Network DOM
+Refs](https://developer.mozilla.org/en/docs/DOM)
+* [W3C What is a DOM](http://www.w3.org/TR/WD-DOM/introduction.html)
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* [JQuery](http://jquery.com/)
+  * Cross Browser Javascript Object Model and Utility library
+  * Monkey patches itself into Javascript via prototypes
+  * let's you you deal with the page when it is ready
+
+````
+$( document ).ready(function() {
+    // Do everything you have to now that the page has loaded
+}
+````
+</script>
+</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* Selectors: Like CSS but in Javascript and saves you a lot of time
+  * $ is a function
+
+````
+// How many slides in this document?
+alert( $( "section" ).length );
+````
+</script>
+</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script>
+function sectionExample() { alert( $( "section" ).length ); }
+</script>
+<input type="button" onclick="javascript:sectionExample()" value="How many Sections?"/>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* Selectors: Like CSS but in Javascript and saves you a lot of time
+  * $ is a function
+  * They let you operate on multiple objects
+  * JQuery also tries to avoid assignment 
+
+````
+function note( event ) 
+{
+   alert("Clicked");
+}
+/* For all list items add a click listener */
+function selectExample() 
+{
+   $("li").click( note );
+}
+// for all list items remove that listener we added
+function removeSelectExample() 
+{
+   $("li").off("click","",note);
+}
+````
+</script>
+</div>
+<script>
+function note( event ) 
+{
+    alert("Clicked");
+}
+function selectExample() 
+{
+   $("li").click( note );
+}
+function removeSelectExample() 
+{
+   $("li").off("click","",note);
+}
+</script>
+<input type="button" onclick="javascript:selectExample()" value="Toggles"/>
+<input type="button" onclick="javascript:removeSelectExample()" value="Off"/>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* Selectors: Like CSS but in Javascript and saves you a lot of time
+  * $ is a function
+  * They let you operate on multiple objects
+  * JQuery also tries to avoid assignment 
+
+````
+function hideIt() 
+{
+   $("li").hide();
+}
+function showIt() 
+{
+   $("li").show();
+}
+
+````
+</script>
+</div>
+<script>
+function hideIt() {
+   $("li").hide();
+}
+function showIt() {
+   $("li").show();
+}
+</script>
+<input type="button" onclick="javascript:hideIt()" value="Hide"/>
+<input type="button" onclick="javascript:showIt()" value="SHow"/>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* Comes with some animations as well
+
+````
+function hideIt2() 
+{
+   $("li").fadeOut();
+}
+function showIt2() 
+{
+   $("li").fadeIn();
+}
+
+````
+</script>
+</div>
+<script>
+function hideIt2() 
+{
+   $("li").fadeOut();
+}
+function showIt2() 
+{
+   $("li").fadeIn();
+}
+</script>
+<input type="button" onclick="javascript:hideIt2()" value="Hide"/>
+<input type="button" onclick="javascript:showIt2()" value="SHow"/>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JQuery
+
+* You can replace elements as well
+
+````
+function censor() 
+{
+   $( "button.censor" ).html("CENSORED");
+}
+````
+
+````
+<button class="censor" onclick="javascript:censor()"> I think _____
+  about ____ </button>
+````
+
+</script>
+</div>
+<script>
+function censor() 
+{
+   $( "button.censor" ).html("CENSORED");
+}
+</script>
+<button class="censor" onclick="javascript:censor()"> I think _____
+  about ____ </button>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX
+
+* Asynchronous JavaScript and XML
+  * Client Side
+  * Allows Javascript to make HTTP requests and interpret the results
+  without redirecting the browser.
+  * Enables heavy-clients and lightweight webservices
+  * Can be used to avoid presentation responsibility on the
+  webservice.
+  * JSON is a common replacement for XML
+  * Twitter.com is heavy on Ajax
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX
+
+* Disadvantages of AJAX ridden websites
+  * History and Back button
+  * Bookmarks
+  * Browser Portability
+  * Same origin policy -- Ajax is not cross domain.
+</script>
+</div>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX
+
+````
+function getSomeJSON() {
+   var xhr = new XMLHttpRequest();
+   xhr.open('GET', 'some.json');
+   // This is a call back
+   xhr.onreadystatechange = function(){
+       // readystate tells you how the transfer is going
+       // 4 is done
+       if( xhr.readyState === 4 ){
+           // This is the HTTP Code
+           if(xhr.status === 200){
+               alert(xhr.responseText);
+           } else {
+               alert("There was an error " + xhr.status);
+           }
+       }
+   };
+   // finally send it
+   xhr.send(null);
+}
+````
+</script>
+</div>
+<script>
+function getSomeJSON() {
+   var xhr = new XMLHttpRequest();
+   xhr.open('GET', 'some.json');
+   // This is a call back
+   xhr.onreadystatechange = function(){
+       // readystate tells you how the transfer is going
+       // 4 is done
+       if( xhr.readyState === 4 ){
+           // This is the HTTP Code
+           if(xhr.status === 200){
+               alert(xhr.responseText);
+           } else {
+               alert("There was an error " + xhr.status);
+           }
+       }
+   };
+   // finally send it
+   xhr.send(null);
+}
+</script>
+<button onclick="javascript:getSomeJSON()">getSomeJSON()</button>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX
+
+Let's make a generic GET
+
+````
+function getJSON( url, successCallback ) {
+   var xhr = new XMLHttpRequest();
+   xhr.open('GET', url);
+   // This is a call back
+   xhr.onreadystatechange = function(){
+       // readystate tells you how the transfer is going
+       // 4 is done
+       if( xhr.readyState === 4 ){
+           // This is the HTTP Code
+           if(xhr.status === 200){
+               successCallback( xhr.responseText );
+           } else {
+               alert("There was an error " + xhr.status);
+           }
+       }
+   };
+   // finally send it
+   xhr.send(null);
+}
+````
+</script>
+</div>
+<script>
+function getJSON( url, successCallback ) {
+   var xhr = new XMLHttpRequest();
+   xhr.open('GET', url);
+   // This is a call back
+   xhr.onreadystatechange = function(){
+       // readystate tells you how the transfer is going
+       // 4 is done
+       if( xhr.readyState === 4 ){
+           // This is the HTTP Code
+           if(xhr.status === 200){
+               try {
+                   successCallback( xhr.responseText );
+               } catch (err) {
+                   alert("Callback failed!" + err);
+               }
+           } else {
+               alert("There was an error " + xhr.status);
+           }
+       }
+   };
+   // finally send it
+   xhr.send(null);
+}
+</script>
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX
+
+Now let's try to do something dynamic! With callbacks
+
+*
+[window.setInterval](http://www.w3schools.com/jsref/met_win_setinterval.asp)
+  * Lets run a function at a set interval.
+
+*
+[window.setTimeout](https://developer.mozilla.org/en/docs/Web/API/window.setTimeout)
+  * Lets you run a function after a period of time.
+
+````
+var myInterval;
+function startGetting() {
+    myInterval = window.setInterval( function() { //callback
+        var now = new Date();
+        var s = 1 + (now.getSeconds() % 3);
+        var url = s + ".json";
+        getJSON( url, function( ourJSON ) { //another
+            $("#ajaxy").text( ourJSON );    //callback
+        });
+    },1000); // 1 second or 1000 ms
+}
+````
+
+````
+<div id="ajaxy">AJAXY</div>
+````
+
+</script>
+</div>
+<script>
+function startGetting() {
+    window.setInterval( function() {
+        var now = new Date();
+        var s = 1 + (now.getSeconds() % 3);
+        var url = s + ".json";
+        getJSON( url, function( ourJSON ) {
+            $("#ajaxy").text( ourJSON );
+        });
+    },1000);
+}
+</script>
+<button onclick="javascript:startGetting()">Start Getting</button>
+<div id="ajaxy">AJAXY</div>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
+
+
 
 <!-- should we really do inheritance? -->
 <!-- maybe cover some nice methods in the stdlib -->
