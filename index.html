@@ -1548,6 +1548,114 @@ function startGetting() {
 <!-- ######################## END MARKDOWN SLIDE ########################## -->
 
 
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## AJAX + JSON + JQuery
+
+Now let's try to do something dynamic! With callbacks
+
+*
+[window.setInterval](http://www.w3schools.com/jsref/met_win_setinterval.asp)
+  * Lets run a function at a set interval.
+
+*
+[window.setTimeout](https://developer.mozilla.org/en/docs/Web/API/window.setTimeout)
+  * Lets you run a function after a period of time.
+
+````
+function startGettingJQuery() {
+    var myInterval = window.setInterval( function() { //callback
+        var now = new Date();
+        var s = 1 + (now.getSeconds() % 3);
+        var url = s + ".json";
+        $.get( url, function( data ) { 
+            // JSON Parsing
+            $("#ajaxy2").text( data.message ); 
+        });
+    },1000); // 1 second or 1000 ms
+}
+
+````
+
+````
+<div id="ajaxy2">AJAXY2</div>
+````
+
+</script>
+</div>
+<script>
+function startGettingJQuery() {
+    var myInterval = window.setInterval( function() { //callback
+        var now = new Date();
+        var s = 1 + (now.getSeconds() % 3);
+        var url = s + ".json";
+        $.get( url, function( data ) { 
+            // JSON Parsing
+            $("#ajaxy2").text( data.message ); 
+        });
+    },1000); // 1 second or 1000 ms
+}
+</script>
+<button onclick="javascript:startGettingJQuery()">Start Getting</button>
+<div id="ajaxy2">AJAXY2</div>
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+<!-- ######################## START MARKDOWN SLIDE ########################## -->
+<section>
+<div data-markdown>
+<script type="text/template">
+## JSON
+
+Strict subset of Javascript see http://json.org for details
+
+* JSON.parse -- Parses a JSON text
+* JSON.stringfy -- Turns an object into a JSON string
+
+````
+function hotDogs() {
+    var obj = { "food":"hotdog", 
+                "condiments":["ketchup","mustard","cheese"],
+                "sausage":"weiner"
+    };
+    $("#hotdog").text( JSON.stringify( obj, null, " " ) ); //pretty print
+    var newObj = JSON.parse($("#hotdog").text()); 
+    $("#sausage").text( newObj.sausage );
+}
+
+````
+
+````
+<div id="sausage">sausage</div>
+<pre><span id="hotdog">hotdog</span></pre>
+````
+
+</script>
+</div>
+<script>
+function hotDogs() {
+    var obj = { "food":"hotdog", 
+                "condiments":["ketchup","mustard","cheese"],
+                "sausage":"weiner"
+    };
+    $("#hotdog").text( JSON.stringify( obj, null, " " ) );
+    var newObj = JSON.parse($("#hotdog").text()); 
+    $("#sausage").text( newObj.sausage );
+}
+</script>
+<button onclick="javascript:hotDogs()">Parse Some JSON!</button>
+<div id="sausage">sausage</div>
+<pre><span id="hotdog">hotdog</span></pre>
+
+
+
+</section>
+<!-- ######################## END MARKDOWN SLIDE ########################## -->
+
+
 
 
 
