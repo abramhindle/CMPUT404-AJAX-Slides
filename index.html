@@ -1570,7 +1570,7 @@ function startGettingJQuery() {
         var now = new Date();
         var s = 1 + (now.getSeconds() % 3);
         var url = s + ".json";
-        $.get( url, function( data ) { 
+        $.getJSON( url, function( data ) { 
             // JSON Parsing
             $("#ajaxy2").text( data.message ); 
         });
@@ -1591,7 +1591,7 @@ function startGettingJQuery() {
         var now = new Date();
         var s = 1 + (now.getSeconds() % 3);
         var url = s + ".json";
-        $.get( url, function( data ) { 
+        $.getJSON( url, function( data ) { 
             // JSON Parsing
             $("#ajaxy2").text( data.message || data ); 
         });
