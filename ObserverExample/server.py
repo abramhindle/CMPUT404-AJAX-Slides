@@ -54,10 +54,13 @@ class World:
            self.listeners[listener][entity] = data
 
     def add_listener(self,listener_name):
-	self.listener[listener_name] = dict()
+	self.listeners[listener_name] = dict()
 
-    def get_listener(self, listerner_name):
-	return self.listener[listener_name]
+    def get_listener(self, listener_name):
+	return self.listeners[listener_name]
+
+    def clear_listener(self, listener_name):
+        self.listeners[listener_name] = dict()
 
 # you can test
 # curl -v   -H "Content-Type: appication/json" -X PUT http://127.0.0.1:5000/entity/X -d '{"x":1,"y":1}' 
@@ -79,10 +82,12 @@ def hello():
     return "World Observer Framework!"
 
 @app.route("/entity/<entity>", methods=['POST','PUT'])
-def update(entity):
+def add_entity(entity):
     v = flask_post_json()
     myWorld.set( entity, v )
-    return flask.jsonify(myWorld.get(entity))
+    e = myWorld.get(entity)    
+    # flask has a security restriction in jsonify
+    return json.dumps( e ) # flask.jsonify( e )
 
 @app.route("/listener/<entity>", methods=['POST','PUT'])
 def add_listener(entity):
@@ -91,7 +96,9 @@ def add_listener(entity):
 
 @app.route("/listener/<entity>")    
 def get_listener(entity):
-    return flask.jsonify(myWorld.get_listener(entity))
+    v = myWorld.get_listener(entity)
+    myWorld.clear_listener(entity)
+    return flask.jsonify( v )
 
 
 if __name__ == "__main__":
