@@ -48,6 +48,7 @@ window.onload = function() {
     }
     function checkForUpdate() {
         if (inputEntity.oldValue !== undefined && inputEntity.value === inputEntity.oldValue) {
+	    return false;
             // eh nothing is happening
         } else {
             // oh something changed
@@ -70,7 +71,8 @@ window.onload = function() {
                                }
                            }
                          }
-                       );    
+                       );
+               return true;
             }
         }
     }
@@ -81,7 +83,22 @@ window.onload = function() {
         }
     }
 
+    function utime() {
+	return new Date().getTime();
+    }
+    var lastTime = utime();
+    function oncePerSecond() {
+        var time = utime();
+        if (time - lastTime >= 1000) {
+            if (checkForUpdate()) {
+                lastTime = time;
+                debug(time);
+            }
+        }
+    }
+
     setInterval( function() {
-        checkForUpdate();
-    }, 100);
+        //checkForUpdate();
+        oncePerSecond();
+    }, 1000/30.0);
 };
