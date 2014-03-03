@@ -92,7 +92,7 @@ window.onload = function() {
         if (time - lastTime >= 1000) {
             if (checkForUpdate()) {
                 lastTime = time;
-                debug(time);
+                //debug(time);
             }
         }
     }
